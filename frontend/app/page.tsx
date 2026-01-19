@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { Box, Container, Typography, Grid, CircularProgress, Button, IconButton } from '@mui/material';
+import { Box, Container, Typography, Grid, CircularProgress, Button, IconButton, useTheme, useMediaQuery } from '@mui/material';
+import React, { useState } from 'react';
 import { ArrowForward as ArrowForwardIcon, ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -11,6 +11,21 @@ import { useGetProductsQuery } from '@/services/productApi';
 
 export default function Home() {
   const { data: products = [], isLoading, isError } = useGetProductsQuery();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [currentMobileIndex, setCurrentMobileIndex] = useState(0);
+
+  const handleNext = () => {
+    if (products.length > 0) {
+      setCurrentMobileIndex((prev) => (prev + 1) % products.length);
+    }
+  };
+
+  const handlePrev = () => {
+    if (products.length > 0) {
+      setCurrentMobileIndex((prev) => (prev - 1 + products.length) % products.length);
+    }
+  };
 
   return (
     <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -352,8 +367,9 @@ export default function Home() {
             <Typography variant="h4" sx={{ fontWeight: 900, letterSpacing: '-0.02em' }}>
               Top sneakers
             </Typography>
-            <Box sx={{ display: 'flex', gap: 2 }}>
+            <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 2 }}>
               <IconButton
+                onClick={handlePrev}
                 sx={{
                   bgcolor: '#f5f5f5',
                   color: 'black',
@@ -365,6 +381,7 @@ export default function Home() {
                 <ArrowBackIosNew sx={{ fontSize: '1.2rem' }} />
               </IconButton>
               <IconButton
+                onClick={handleNext}
                 sx={{
                   bgcolor: '#333',
                   color: 'white',
@@ -388,11 +405,21 @@ export default function Home() {
             </Box>
           ) : (
             <Grid container spacing={5}>
-              {products.map((product) => (
-                <Grid size={{ xs: 6, sm: 6, md: 4 }} key={product.id}>
-                  <ProductCard product={product} />
-                </Grid>
-              ))}
+              {isMobile ? (
+                // Mobile View: Show only one card
+                products.length > 0 && (
+                  <Grid size={{ xs: 12 }} key={products[currentMobileIndex].id}>
+                    <ProductCard product={products[currentMobileIndex]} />
+                  </Grid>
+                )
+              ) : (
+                // Desktop View: Show all cards
+                products.map((product) => (
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
+                    <ProductCard product={product} />
+                  </Grid>
+                ))
+              )}
               {products.length === 0 && (
                 <Grid size={{ xs: 12 }}>
                   <Typography sx={{ textAlign: 'center', py: 4, color: '#999' }}>
@@ -838,6 +865,6 @@ export default function Home() {
       </main>
 
       <Footer />
-    </Box>
+    </Box >
   );
 }
