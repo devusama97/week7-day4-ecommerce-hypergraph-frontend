@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Box, Container, Typography, Grid, CircularProgress, Button } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Box, Container, Typography, Grid, CircularProgress, Button, IconButton } from '@mui/material';
+import { ArrowForward as ArrowForwardIcon, ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import ProductCard from '@/components/ProductCard';
@@ -18,15 +18,27 @@ export default function Home() {
 
 
       <main style={{ flexGrow: 1, overflowX: 'hidden' }}>
+        {/* Mobile-only Top Banner Image */}
+        <Box sx={{ display: { xs: 'block', md: 'none' }, width: '100%' }}>
+          <img
+            src="/img/mob header 1.jpg"
+            alt="Mobile Header"
+            style={{ width: '100%', display: 'block' }}
+          />
+        </Box>
+
         {/* Promotional Banner Section - WE ARE NEVER DONE */}
         <Box
           sx={{
             position: 'relative',
             bgcolor: '#000',
             color: 'white',
-            py: { xs: 6, md: 8 },
+            py: { xs: 3, md: 8 },
             mb: 0,
-            backgroundImage: 'url(/img/hero1.png)',
+            backgroundImage: {
+              xs: 'url(/img/mob header 2.jpg)',
+              md: 'url(/img/hero1.png)'
+            },
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
@@ -40,7 +52,7 @@ export default function Home() {
                   fontWeight: 900,
                   fontStyle: 'italic',
                   mb: 2,
-                  fontSize: { xs: '1.75rem', md: '2.5rem' },
+                  fontSize: { xs: '1.25rem', md: '2.5rem' },
                   letterSpacing: '-0.02em',
                   lineHeight: 1.1
                 }}
@@ -53,7 +65,7 @@ export default function Home() {
                 sx={{
                   mb: 0.5,
                   fontWeight: 900,
-                  fontSize: '18px',
+                  fontSize: { xs: '14px', md: '18px' },
                   fontFamily: 'var(--font-montserrat), sans-serif',
                 }}
               >
@@ -65,7 +77,7 @@ export default function Home() {
                 sx={{
                   mb: 2.5,
                   fontWeight: 900,
-                  fontSize: '18px',
+                  fontSize: { xs: '13px', md: '18px' },
                   fontFamily: 'var(--font-montserrat), sans-serif',
                   lineHeight: 1.5,
                   maxWidth: '90%'
@@ -101,8 +113,8 @@ export default function Home() {
         <Hero />
 
         {/* Overlapping Promotional Cards Section */}
-        <Container maxWidth="lg" sx={{ mb: 12, position: 'relative', zIndex: 10, mt: -8.5, }}>
-          <Grid container spacing={4}>
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mb: 12, position: 'relative', zIndex: 10, mt: -8.5, px: { xs: 2.5, md: 0 } }}>
+          <Grid container spacing={6}>
             {/* Card 1 */}
             <Grid size={{ xs: 12, md: 6 }}>
               <Box
@@ -110,8 +122,8 @@ export default function Home() {
                   position: 'relative',
                   bgcolor: '#EFEFEF',
                   borderRadius: '18px',
-                  p: { xs: 4, md: 5 },
-                  height: { xs: 220, md: 260 },
+                  p: { xs: 2, md: 5 },
+                  height: { xs: 150, md: 260 },
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
@@ -129,7 +141,7 @@ export default function Home() {
                       color: '#FF3939',
                       fontWeight: 700,
                       fontStyle: 'italic',
-                      fontSize: { xs: '28px', md: '40px' },
+                      fontSize: { xs: '16px', md: '40px' },
                       lineHeight: '1.2',
                       mb: 0.5,
                       fontFamily: 'Montserrat, sans-serif'
@@ -141,7 +153,7 @@ export default function Home() {
                     sx={{
                       fontWeight: 400,
                       mb: 2,
-                      fontSize: { xs: '14px', md: '18px' },
+                      fontSize: { xs: '12px', md: '18px' },
                       lineHeight: '1.4',
                       letterSpacing: '0.01em',
                       color: '#000000',
@@ -152,14 +164,14 @@ export default function Home() {
                   </Typography>
                   <Box
                     sx={{
-                      width: 50,
-                      height: 50,
                       bgcolor: '#FFFFFF',
                       borderRadius: '35px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       cursor: 'pointer',
+                      width: { xs: 35, md: 50 },
+                      height: { xs: 35, md: 50 },
                       boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
                       '&:hover': {
                         bgcolor: '#f9f9f9'
@@ -174,10 +186,10 @@ export default function Home() {
                 <Box
                   sx={{
                     position: 'absolute',
-                    right: '-5%',
+                    right: { xs: '0%', md: '-5%' },
                     top: '40%',
                     transform: 'translateY(-50%)',
-                    width: '60%',
+                    width: { xs: '50%', md: '60%' },
                     zIndex: 1,
                     pointerEvents: 'none',
                     filter: 'drop-shadow(0px 15px 30px rgba(0, 0, 0, 0.2))'
@@ -204,8 +216,8 @@ export default function Home() {
                   position: 'relative',
                   bgcolor: '#EFEFEF',
                   borderRadius: '18px',
-                  p: { xs: 4, md: 5 },
-                  height: { xs: 220, md: 260 },
+                  p: { xs: 2.5, md: 5 },
+                  height: { xs: 180, md: 260 },
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
@@ -223,7 +235,7 @@ export default function Home() {
                       color: '#FF3939',
                       fontWeight: 700,
                       fontStyle: 'italic',
-                      fontSize: { xs: '28px', md: '40px' },
+                      fontSize: { xs: '16px', md: '40px' },
                       lineHeight: '1.2',
                       mb: 0.5,
                       fontFamily: 'Montserrat, sans-serif'
@@ -246,14 +258,14 @@ export default function Home() {
                   </Typography>
                   <Box
                     sx={{
-                      width: 50,
-                      height: 50,
                       bgcolor: '#FFFFFF',
                       borderRadius: '35px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       cursor: 'pointer',
+                      width: { xs: 35, md: 50 },
+                      height: { xs: 35, md: 50 },
                       boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
                       '&:hover': {
                         bgcolor: '#f9f9f9'
@@ -268,10 +280,10 @@ export default function Home() {
                 <Box
                   sx={{
                     position: 'absolute',
-                    right: '-5%',
+                    right: { xs: '0%', md: '-5%' },
                     top: '40%',
                     transform: 'translateY(-50%)',
-                    width: '60%',
+                    width: { xs: '50%', md: '60%' },
                     zIndex: 1,
                     pointerEvents: 'none',
                     filter: 'drop-shadow(0px 15px 30px rgba(0, 0, 0, 0.25))'
@@ -295,14 +307,14 @@ export default function Home() {
 
         <Box sx={{ mt: 10 }}>
           {/* Secondary Heading Section - Moved here to allow cards to overlap Hero Banner */}
-          <Container maxWidth="lg" sx={{ textAlign: 'center', mb: 10 }}>
+          <Container maxWidth="xl" sx={{ textAlign: 'center', mb: 10 }}>
             <Typography
               sx={{
                 fontWeight: 600,
                 mb: 1,
                 textTransform: 'uppercase',
                 letterSpacing: 2,
-                fontSize: { xs: '18px', md: '24px' },
+                fontSize: { xs: '14px', md: '24px' },
                 fontFamily: 'Montserrat, sans-serif'
               }}
             >
@@ -315,7 +327,7 @@ export default function Home() {
                 textTransform: 'uppercase',
                 fontStyle: 'italic',
                 mb: 2,
-                fontSize: { xs: '3rem', md: '5rem' },
+                fontSize: { xs: '2rem', md: '5rem' },
                 lineHeight: 1,
                 fontFamily: 'Montserrat, sans-serif'
               }}
@@ -325,7 +337,7 @@ export default function Home() {
             <Typography
               sx={{
                 color: '#666',
-                fontSize: { xs: '18px', md: '24px' },
+                fontSize: { xs: '14px', md: '24px' },
                 fontFamily: 'Montserrat, sans-serif'
               }}
             >
@@ -335,11 +347,35 @@ export default function Home() {
         </Box>
 
         {/* Top Sneakers Section */}
-        <Container maxWidth="lg" sx={{ mb: 8 }}>
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mb: 8 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
-            <Typography variant="h5" sx={{ fontWeight: 800 }}>
+            <Typography variant="h4" sx={{ fontWeight: 900, letterSpacing: '-0.02em' }}>
               Top sneakers
             </Typography>
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <IconButton
+                sx={{
+                  bgcolor: '#f5f5f5',
+                  color: 'black',
+                  '&:hover': { bgcolor: '#e0e0e0' },
+                  width: 45,
+                  height: 45
+                }}
+              >
+                <ArrowBackIosNew sx={{ fontSize: '1.2rem' }} />
+              </IconButton>
+              <IconButton
+                sx={{
+                  bgcolor: '#333',
+                  color: 'white',
+                  '&:hover': { bgcolor: '#000' },
+                  width: 45,
+                  height: 45
+                }}
+              >
+                <ArrowForwardIos sx={{ fontSize: '1.2rem' }} />
+              </IconButton>
+            </Box>
           </Box>
 
           {isLoading ? (
@@ -351,9 +387,9 @@ export default function Home() {
               <Typography color="error">Failed to load products. Please check backend connection.</Typography>
             </Box>
           ) : (
-            <Grid container spacing={3}>
+            <Grid container spacing={5}>
               {products.map((product) => (
-                <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
+                <Grid size={{ xs: 6, sm: 6, md: 4 }} key={product.id}>
                   <ProductCard product={product} />
                 </Grid>
               ))}
@@ -369,21 +405,21 @@ export default function Home() {
         </Container>
 
         {/* Category Section - Redesigned to match Figma */}
-        <Container maxWidth="lg" sx={{ mb: 10 }}>
+        <Container maxWidth="xl" sx={{ mb: 10 }}>
           <Typography variant="h5" sx={{ fontWeight: 800, mb: 4, fontFamily: 'Montserrat, sans-serif' }}>
             Buy by category
           </Typography>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {/* WORKOUT Row */}
-            <Grid container sx={{ minHeight: 450 }}>
-              <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: '#fff' }}>
+            <Grid container sx={{ height: { xs: 'auto', md: 450 } }}>
+              <Grid size={{ xs: 12, md: 6 }} sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', justifyContent: 'center', bgcolor: '#fff', height: { xs: 150, md: 450 } }}>
                 <Typography
                   sx={{
                     fontFamily: 'Montserrat, sans-serif',
                     fontWeight: 900,
                     fontStyle: 'italic',
-                    fontSize: { xs: '2rem', md: '3.5rem' },
+                    fontSize: { xs: '1.5rem', md: '3.5rem' },
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase'
                   }}
@@ -391,27 +427,69 @@ export default function Home() {
                   WORKOUT
                 </Typography>
               </Grid>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Box sx={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+              <Grid size={{ xs: 12, md: 6 }} sx={{ height: { xs: 200, md: 450 } }}>
+                <Box sx={{ width: '100%', height: '100%', overflow: 'hidden', position: 'relative' }}>
                   <img src="/img/workout.gif" alt="Workout" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  {/* Mobile Mobile Only Overlay Label */}
+                  <Typography
+                    sx={{
+                      display: { xs: 'block', md: 'none' },
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      color: '#fff',
+                      fontFamily: 'Montserrat, sans-serif',
+                      fontWeight: 900,
+                      fontStyle: 'italic',
+                      fontSize: '1.5rem',
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      zIndex: 2,
+                      textShadow: '0 0 10px rgba(0,0,0,0.5)'
+                    }}
+                  >
+                    WORKOUT
+                  </Typography>
                 </Box>
               </Grid>
             </Grid>
 
             {/* RUN Row (Alternated) */}
-            <Grid container sx={{ minHeight: 450, flexDirection: { xs: 'column-reverse', md: 'row' } }}>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Box sx={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+            <Grid container sx={{ height: { xs: 'auto', md: 450 }, flexDirection: { xs: 'column-reverse', md: 'row' } }}>
+              <Grid size={{ xs: 12, md: 6 }} sx={{ height: { xs: 200, md: 450 } }}>
+                <Box sx={{ width: '100%', height: '100%', overflow: 'hidden', position: 'relative' }}>
                   <img src="/img/run.gif" alt="Run" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  {/* Mobile Mobile Only Overlay Label */}
+                  <Typography
+                    sx={{
+                      display: { xs: 'block', md: 'none' },
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      color: '#fff',
+                      fontFamily: 'Montserrat, sans-serif',
+                      fontWeight: 900,
+                      fontStyle: 'italic',
+                      fontSize: '1.5rem',
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      zIndex: 2,
+                      textShadow: '0 0 10px rgba(0,0,0,0.5)'
+                    }}
+                  >
+                    RUN
+                  </Typography>
                 </Box>
               </Grid>
-              <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: '#fff' }}>
+              <Grid size={{ xs: 12, md: 6 }} sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', justifyContent: 'center', bgcolor: '#fff', height: { xs: 150, md: 450 } }}>
                 <Typography
                   sx={{
                     fontFamily: 'Montserrat, sans-serif',
                     fontWeight: 900,
                     fontStyle: 'italic',
-                    fontSize: { xs: '2rem', md: '3.5rem' },
+                    fontSize: { xs: '1.5rem', md: '3.5rem' },
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase'
                   }}
@@ -422,14 +500,14 @@ export default function Home() {
             </Grid>
 
             {/* FOOTBALL Row */}
-            <Grid container sx={{ minHeight: 450 }}>
-              <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: '#fff' }}>
+            <Grid container sx={{ height: { xs: 'auto', md: 450 } }}>
+              <Grid size={{ xs: 12, md: 6 }} sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', justifyContent: 'center', bgcolor: '#fff', height: { xs: 150, md: 450 } }}>
                 <Typography
                   sx={{
                     fontFamily: 'Montserrat, sans-serif',
                     fontWeight: 900,
                     fontStyle: 'italic',
-                    fontSize: { xs: '2rem', md: '3.5rem' },
+                    fontSize: { xs: '1.5rem', md: '3.5rem' },
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase'
                   }}
@@ -437,9 +515,30 @@ export default function Home() {
                   FOOTBALL
                 </Typography>
               </Grid>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Box sx={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+              <Grid size={{ xs: 12, md: 6 }} sx={{ height: { xs: 200, md: 450 } }}>
+                <Box sx={{ width: '100%', height: '100%', overflow: 'hidden', position: 'relative' }}>
                   <img src="/img/football.gif" alt="Football" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  {/* Mobile Mobile Only Overlay Label */}
+                  <Typography
+                    sx={{
+                      display: { xs: 'block', md: 'none' },
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      color: '#fff',
+                      fontFamily: 'Montserrat, sans-serif',
+                      fontWeight: 900,
+                      fontStyle: 'italic',
+                      fontSize: '1.5rem',
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      zIndex: 2,
+                      textShadow: '0 0 10px rgba(0,0,0,0.5)'
+                    }}
+                  >
+                    FOOTBALL
+                  </Typography>
                 </Box>
               </Grid>
             </Grid>
@@ -447,11 +546,11 @@ export default function Home() {
         </Container>
 
         {/* More Products Section - Redesigned with Discount Cards */}
-        <Container maxWidth="lg" sx={{ mb: 10, overflow: 'visible' }}>
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mb: 10, overflow: 'visible', px: { xs: 2.5, md: 0 } }}>
           <Typography variant="h5" sx={{ fontWeight: 800, mb: 4, fontFamily: 'Montserrat, sans-serif' }}>
             LOOKS GOOD, RUNS GOOD, FEELS GOOD.
           </Typography>
-          <Grid container spacing={4}>
+          <Grid container spacing={6}>
             {/* Discount Card 1 */}
             <Grid size={{ xs: 12, md: 6 }}>
               <Box
@@ -459,8 +558,8 @@ export default function Home() {
                   position: 'relative',
                   bgcolor: '#EFEFEF',
                   borderRadius: '18px',
-                  p: { xs: 4, md: 5 },
-                  height: 260,
+                  p: { xs: 2, md: 5 },
+                  height: { xs: 160, md: 260 },
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
@@ -477,7 +576,7 @@ export default function Home() {
                     sx={{
                       color: '#FF3939',
                       fontWeight: 900,
-                      fontSize: { xs: '24px', md: '32px' },
+                      fontSize: { xs: '16px', md: '32px' },
                       fontFamily: 'Montserrat, sans-serif',
                       lineHeight: 1.2,
                       mb: 0.5
@@ -488,7 +587,7 @@ export default function Home() {
                   <Typography
                     sx={{
                       fontWeight: 400,
-                      fontSize: { xs: '16px', md: '20px' },
+                      fontSize: { xs: '13px', md: '20px' },
                       fontFamily: 'Montserrat, sans-serif',
                       mb: 3,
                       color: '#000'
@@ -520,10 +619,10 @@ export default function Home() {
                 <Box
                   sx={{
                     position: 'absolute',
-                    right: '-5%',
+                    right: { xs: '0%', md: '-5%' },
                     top: '40%',
                     transform: 'translateY(-50%)',
-                    width: '60%',
+                    width: { xs: '50%', md: '60%' },
                     zIndex: 1,
                     pointerEvents: 'none',
                     filter: 'drop-shadow(0px 15px 30px rgba(0, 0, 0, 0.2))'
@@ -550,8 +649,8 @@ export default function Home() {
                   position: 'relative',
                   bgcolor: '#EFEFEF',
                   borderRadius: '18px',
-                  p: { xs: 4, md: 5 },
-                  height: 260,
+                  p: { xs: 2, md: 5 },
+                  height: { xs: 160, md: 260 },
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
@@ -568,7 +667,7 @@ export default function Home() {
                     sx={{
                       color: '#FF3939',
                       fontWeight: 900,
-                      fontSize: { xs: '24px', md: '32px' },
+                      fontSize: { xs: '16px', md: '32px' },
                       fontFamily: 'Montserrat, sans-serif',
                       lineHeight: 1.2,
                       mb: 0.5
@@ -579,7 +678,7 @@ export default function Home() {
                   <Typography
                     sx={{
                       fontWeight: 400,
-                      fontSize: { xs: '16px', md: '20px' },
+                      fontSize: { xs: '13px', md: '20px' },
                       fontFamily: 'Montserrat, sans-serif',
                       mb: 3,
                       color: '#000'
@@ -611,10 +710,10 @@ export default function Home() {
                 <Box
                   sx={{
                     position: 'absolute',
-                    right: '-5%',
+                    right: { xs: '0%', md: '-5%' },
                     top: '40%',
                     transform: 'translateY(-50%)',
-                    width: '60%',
+                    width: { xs: '50%', md: '60%' },
                     zIndex: 1,
                     pointerEvents: 'none',
                     filter: 'drop-shadow(0px 15px 30px rgba(0, 0, 0, 0.25))'
@@ -637,7 +736,7 @@ export default function Home() {
         </Container>
 
         {/* MORE NIKE PRODUCTS Section */}
-        <Container maxWidth="lg" sx={{ mb: 10 }}>
+        <Container maxWidth="xl" sx={{ mb: 10 }}>
           <Typography variant="h5" sx={{ fontWeight: 800, mb: 4, fontFamily: 'Montserrat, sans-serif' }}>
             MORE NIKE PRODUCTS
           </Typography>
@@ -661,7 +760,7 @@ export default function Home() {
                   color: '#fff',
                   fontWeight: 900,
                   fontStyle: 'italic',
-                  fontSize: { xs: '2rem', md: '3.5rem' },
+                  fontSize: { xs: '1.5rem', md: '3.5rem' },
                   fontFamily: 'Montserrat, sans-serif',
                   textTransform: 'uppercase',
                   lineHeight: 1.1,
@@ -674,7 +773,7 @@ export default function Home() {
                 sx={{
                   color: '#fff',
                   fontWeight: 400,
-                  fontSize: { xs: '1rem', md: '1.25rem' },
+                  fontSize: { xs: '0.875rem', md: '1.25rem' },
                   fontFamily: 'Montserrat, sans-serif',
                   mb: 4
                 }}

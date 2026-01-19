@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
             <Box
                 sx={{
                     position: 'relative',
-                    height: { xs: '450px', md: '700px' },
+                    height: { xs: '320px', md: '700px' },
                     width: '100%',
                     overflow: 'hidden',
                     display: 'flex',
@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
                     sx={{
                         position: 'relative',
                         zIndex: 2,
-                        width: { xs: '180px', md: '370px' },
+                        width: { xs: '150px', md: '370px' },
                         height: 'auto',
                         display: 'flex',
                         alignItems: 'center',

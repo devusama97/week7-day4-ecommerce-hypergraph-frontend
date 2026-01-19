@@ -42,7 +42,7 @@ export default function CartPage() {
             <Navbar />
 
             <main style={{ flexGrow: 1 }}>
-                <Container maxWidth="lg" sx={{ py: 8 }}>
+                <Container maxWidth="xl" sx={{ py: 8 }}>
                     <Typography variant="h4" sx={{ fontWeight: 800, mb: 6 }}>
                         Your Cart
                     </Typography>
